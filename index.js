@@ -6,8 +6,38 @@ document.addEventListener("DOMContentLoaded", function(){
 async function initialApp(){
     accesstoken = await getSpotifyToken();
     if(accesstoken){
-        getPopularTrack();
+        const respone = await getPopularTrack();
+        displayTrack(respone.tracks.items);
     }
+}
+
+function displayTrack(data){
+  console.log(data);
+  data.forEach((item) => {
+    // console.log(item);
+    const imageUrl = item.album.images[0].url;
+    const name = item.name;
+    const artistName = item.artists.map((item) => item.name).join(", ");
+    // map: đi qua từng thằng và lấy đúng phần cần lấy (vd: name)
+
+    // tạo thẻ div
+    const element = document.createElement("div");
+    // gắn CLASS cho thẻ div đó
+    element.className = "track-card";
+    // gắn NỘI DUNG cho thẻ div
+    element.innerHTML = `<div class="track-card-container">
+                            <img src="${imageUrl}" alt="">
+                            <h3>${name}</h3>
+                            <p>${artistName}</p>
+                         </div>`;
+    // gắn thẻ div vào TRACK-SECTION
+    const trackSection = document.getElementById("track-section");
+    trackSection.appendChild(element);
+
+
+  })
+
+  
 }
 
 async function getPopularTrack() {
@@ -17,19 +47,16 @@ async function getPopularTrack() {
         Authorization: `Bearer ${accesstoken}`,
       },
       params: {
-        q: "Jack",
+        q: "Taylor Swift",
         type: "track",
         limit: "10",
       },
     });
-
-    console.log(response);
+    return response.data;
   } catch (error) {
     console.log(error);
   }
 }
-
-
 
 async function getSpotifyToken() {
   try {

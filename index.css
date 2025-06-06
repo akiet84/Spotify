@@ -432,7 +432,7 @@ main .section-header h2{
   font-size: 20px;
 }
 
-main .track-section{
+main #track-section{
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
@@ -445,7 +445,7 @@ main .track-card-container{
   padding: 20px;
 }
 
-main .track-section .track-card{
+main #track-section .track-card{
   width: calc(100%/3 - 20px);
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px);
