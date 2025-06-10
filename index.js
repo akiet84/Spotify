@@ -28,17 +28,42 @@ function displayTrack(data){
     element.innerHTML = `<div class="track-card-container">
                             <img src="${imageUrl}" alt="">
                             <h3>${name}</h3>
-                            <p>${artistName}</p>
+                            <p>${truncateText(artistName, 25)}</p>
                          </div>`;
+
+
+                         
+    // Them eventlistener de phat nhac
+    element.addEventListener("click", () =>{
+      playtrack(item.id, name, artistName);
+    });
+
+    function truncateText(text, number){ 
+      return text.length > number ? text.slice(0 ,number) + " ..." : text;
+    };
+    
+    
     // gắn thẻ div vào TRACK-SECTION
     const trackSection = document.getElementById("track-section");
     trackSection.appendChild(element);
-
-
   })
-
-  
 }
+
+function playtrack (id, name, artistName){
+  const iframe = document.getElementById("iframe");
+  iframe.src = `https://open.spotify.com/embed/track/${id}?utm_source=generator&theme=0`;
+  const modal = document.getElementById("modal");
+  modal.style.display = "block";
+  const modal_name = document.getElementById("modal_name");
+  modal_name.innerHTML =name;
+}
+
+function handelClose(){
+  const modal = document.getElementById("modal");
+  modal.style.display = "none";
+}
+
+
 
 async function getPopularTrack() {
   try {
@@ -47,7 +72,7 @@ async function getPopularTrack() {
         Authorization: `Bearer ${accesstoken}`,
       },
       params: {
-        q: "Taylor Swift",
+        q: "Robin",
         type: "track",
         limit: "10",
       },

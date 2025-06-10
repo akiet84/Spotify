@@ -24,3 +24,5 @@ console.log(`
 - Client Secret: ${SPOTIFY_CONFIG.CLIENT_SECRET ? "✅" : "❌"}
 - Redirect URI: ${SPOTIFY_CONFIG.REDIRECT_URI}
 `);
+
+

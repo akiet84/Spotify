@@ -468,6 +468,27 @@ main .track-card-container p{
   opacity: 0.8;
 }
 
+.modal{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 400px;
+  padding: 50px;
+  background-color: rgb(59, 21, 8);
+  border-radius: 20px;
+  display: none;
+}
+
+.modal-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+
 
 
 

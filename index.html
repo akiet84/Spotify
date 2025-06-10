@@ -16,8 +16,7 @@
       <div class="container">
         <div class="logo">
           <i class="fa-solid fa-music"></i>
-          <h1>Keitstify</h1> 
-
+          <h1>Keitstify</h1>
         </div>
 
         <nav>
@@ -81,13 +80,36 @@
               </div>
             </button>
           </div>
-          <div id="track-section">
-            
-          </div>
+
+          <div id="track-section"></div>
         </section>
       </div>
     </main>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.9.0/axios.min.js" integrity="sha512-FPlUpimug7gt7Hn7swE8N2pHw/+oQMq/+R/hH/2hZ43VOQ+Kjh25rQzuLyPz7aUWKlRpI7wXbY6+U3oFPGjPOA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <div id="modal" class="modal">
+      <div class="modal-header">
+        <h2 id="modal_name">Ten bai hat</h2>
+        <i onclick="handelClose()" class="fa-solid fa-close"></i>
+      </div>
+      <iframe
+        id="iframe"
+        title="Spotify Embed: Recommendation Playlist "
+        src="https://open.spotify.com/embed/track/2AnvQvVqWORCmgRzLR0sHe?utm_source=generator&theme=0"
+        width="100%"
+        height="100%"
+        frameborder="0"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"
+      >
+      </iframe>
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.9.0/axios.min.js"
+      integrity="sha512-FPlUpimug7gt7Hn7swE8N2pHw/+oQMq/+R/hH/2hZ43VOQ+Kjh25rQzuLyPz7aUWKlRpI7wXbY6+U3oFPGjPOA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script src="./config.js"></script>
     <script src="./index.js"></script>
   </body>
