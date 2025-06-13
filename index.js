@@ -1,7 +1,31 @@
 let accesstoken
+let searchTimeOut;
 document.addEventListener("DOMContentLoaded", function(){
     initialApp();
+    setupSearchListener();
 })
+
+ function setupSearchListener(){
+  const inputSearch = document.getElementById("input-Search");
+ inputSearch.addEventListener("input" ,(e) =>{
+  const querry = e.target.value.trim();
+  clearTimeout(searchTimeOut);
+  //debounce
+  searchTimeOut = setTimeout(async () =>{
+    if(querry){
+    const response = await getPopularTrack(querry);
+    console.log(response);
+    resetTrack();
+    displayTrack(response.tracks.items);
+  }
+  },2000)
+ });
+}
+
+function resetTrack(){
+  const trackSection = document.getElementById("track-section");
+  trackSection.innerHTML ="";
+}
 
 async function initialApp(){
     accesstoken = await getSpotifyToken();
@@ -64,15 +88,14 @@ function handelClose(){
 }
 
 
-
-async function getPopularTrack() {
+async function getPopularTrack(querry = "Robin") {
   try {
     const response = await axios.get("https://api.spotify.com/v1/search", {
       headers: {
         Authorization: `Bearer ${accesstoken}`,
       },
       params: {
-        q: "Robin",
+        q: querry,
         type: "track",
         limit: "10",
       },
